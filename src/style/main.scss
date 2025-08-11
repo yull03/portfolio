@@ -1,0 +1,108 @@
+#all-style {
+    @include font
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+
+    .image {
+        img {
+            width: 700px;
+            height: 700px;
+        }
+    }
+
+    .main-text {
+        margin-top: 0;
+        text-align: right;
+        font-size: 10rem;
+
+        .one {
+            margin-right: 15rem;
+            line-height: 1;
+        }
+
+        .two {
+            margin-right: 5rem;
+            line-height: 1;
+            padding: 1.5rem;
+        }
+
+        .three {
+            font-size: 12rem;
+            line-height: 2.5;
+        }
+    }
+}
+
+.main-bottom {
+    margin: 1rem;
+    margin-left: 2rem;
+    display: flex;
+
+    .img-box {
+        display: flex;
+        align-items: center;
+        background-color: #999;
+        width: 500px;
+        height: 250px;
+        position: relative;
+
+        img {
+            width: 300px;
+            height: 220px;
+            margin: 0 0.5rem;
+        }
+
+        .box-text {
+            display: block;
+            position: absolute;
+            bottom: 1rem;
+            right: 0;
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                padding: 0 0.5rem;
+                line-height: 1;
+                h2{
+                    margin-top: 1rem;
+                    font-size: 1.5rem;
+                }
+                li{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+    .bottom-text{
+        .my-text{
+        h1{
+            font-size: 3rem;
+            margin-left: 12rem;
+            padding-bottom: 1.5rem;
+        }
+        li{
+            font-size: 1.5rem;
+            margin-left: 13rem;
+        }
+    }
+        .git{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            margin-top: 5rem;
+            h3{
+                font-size: 3rem;
+                margin-left: 10rem;
+            }
+            li{
+                font-size: 1.8rem;
+                margin-left: 2rem;
+                padding-top: 0.5rem;
+            }
+        }
+    }
+}

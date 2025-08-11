@@ -1,0 +1,90 @@
+* {
+    @include font;
+}
+
+$stripe-color: rgba(0,0,0,.22);
+$stripe-width: 2px;     // 세로줄 두께
+$stripe-gap: 8px;       // 세로줄 간격
+$stripe-height: 22px;   // 세로줄 높이
+$item-gap: 7rem;        // 항목 간격
+$item-width: 10rem;     // 각 항목 폭(가운데 정렬 안정화)
+
+header{
+  position: relative;
+  height: 56px;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;     // 가로선 잘림 방지
+}
+
+/* 좌↔우 끝까지 세로줄 (가로선 없음) */
+.line{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;                       // 화면 전체
+  height: $stripe-height;             // 세로줄 ‘높이’
+  transform: translate(-50%, -50%);
+  background: repeating-linear-gradient(
+    90deg,
+    $stripe-color 0 $stripe-width,
+    transparent $stripe-width calc($stripe-width + $stripe-gap)
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 메뉴 */
+.menu{
+  --gap: #{$item-gap};                // gap을 변수로 공유
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: var(--gap);
+  list-style: none;
+  margin: 0; padding: 0;
+  background: transparent;            // 텍스트만 가릴 거라 투명
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* 각 항목을 동일 폭 + 가운데 정렬 */
+.menu > li{
+  width: $item-width;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 텍스트 영역만 세로줄 가리기 */
+.menu .mask{
+    font-size: 2.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0  3rem;                   // 가리는 폭 조절
+  line-height: 1;
+  background: #fff;                   // 페이지 배경색과 동일
+}
+
+/* 항목 사이 세로 구분선(||||) — gap의 정확한 중앙에 배치 */
+.menu > li + li{ position: relative; }
+.menu > li + li::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(-0.5 * var(--gap));      // 두 항목의 정중앙
+  transform: translate(-50%, -50%);
+  width: 9px;                          // 1px + 4px + 8px 총 너비
+  height: 18px;
+  background: linear-gradient(90deg, 
+    $stripe-color 0 1px, transparent 1px 4px,
+    $stripe-color 4px 5px, transparent 5px 8px,
+    $stripe-color 8px 9px, transparent 9px 9px
+  );                                   // 세로줄 3개
+}
+span:hover{
+    
+}

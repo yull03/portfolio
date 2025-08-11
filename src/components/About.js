@@ -28,6 +28,15 @@ const About = () => {
                     <h3>My-skill</h3>
                     <div>
                         <img></img>
+                        <img></img>
+                        <img></img>
+                        <img></img>
+                        <img></img>
+                        <img></img>
+                        <img></img>
+                        <img></img>
+                        <img></img>
+                        <img className="sass"></img>
                     </div>
                 </div>
             </div>
