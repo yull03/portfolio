@@ -13,13 +13,6 @@ const App = () => {
   return (
     <div>
       <Main/>
-      <Header/>
-      <About/>
-      <Project/>
-      <List/>
-      <Clone/>
-      <Publishing/>
-      <Footer/>
     </div>
   );
 };

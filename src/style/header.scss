@@ -9,30 +9,31 @@ $stripe-height: 22px;   // 세로줄 높이
 $item-gap: 7rem;        // 항목 간격
 $item-width: 10rem;     // 각 항목 폭(가운데 정렬 안정화)
 
-header{
-  position: relative;
+.header{
+ position: relative;
   height: 56px;
-  margin: 30px 0;
+  margin-top: 28px;     /* 히어로와 간격 */
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;     // 가로선 잘림 방지
+  overflow: hidden;   
+  isolation: isolate; 
 }
 
 /* 좌↔우 끝까지 세로줄 (가로선 없음) */
 .line{
-  position: absolute;
+ position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;                       // 화면 전체
-  height: $stripe-height;             // 세로줄 ‘높이’
+  width: 100vw;                       /* 좌우 끝까지 */
+  height: $stripe-height;             /* 세로줄 보일 높이 */
   transform: translate(-50%, -50%);
   background: repeating-linear-gradient(
     90deg,
     $stripe-color 0 $stripe-width,
     transparent $stripe-width calc($stripe-width + $stripe-gap)
   );
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -56,6 +57,8 @@ header{
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 /* 텍스트 영역만 세로줄 가리기 */
@@ -66,7 +69,10 @@ header{
   justify-content: center;
   padding: 0  3rem;                   // 가리는 폭 조절
   line-height: 1;
-  background: #fff;                   // 페이지 배경색과 동일
+  background: #fff;     
+  transition: transform .18s ease, color .18s ease;
+  will-change: transform;
+  transform-origin: center;
 }
 
 /* 항목 사이 세로 구분선(||||) — gap의 정확한 중앙에 배치 */
@@ -78,13 +84,10 @@ header{
   left: calc(-0.5 * var(--gap));      // 두 항목의 정중앙
   transform: translate(-50%, -50%);
   width: 9px;                          // 1px + 4px + 8px 총 너비
-  height: 18px;
-  background: linear-gradient(90deg, 
-    $stripe-color 0 1px, transparent 1px 4px,
-    $stripe-color 4px 5px, transparent 5px 8px,
-    $stripe-color 8px 9px, transparent 9px 9px
-  );                                   // 세로줄 3개
+  height: 18px;                                  // 세로줄 3개
 }
-span:hover{
-    
+.menu > li:hover .mask,
+.menu > li:focus-within .mask {
+  transform: scale(1.06);
+  color: red;
 }

@@ -1,3 +1,4 @@
+import About from "./About";
 import Header from "./Header";
 
 const Main = () => {
@@ -12,8 +13,8 @@ const Main = () => {
                 <p className="two">End</p>
                 <p className="three">PORTFOLIO</p>
             </div>
-            <Header/>
             </div>
+            <Header/>
             <div className="main-bottom">
                 <div className="img-box">
                     <img/>
@@ -40,6 +41,7 @@ const Main = () => {
 
                 </div>
             </div>
+            <About/>
         </div>
     );
 };
