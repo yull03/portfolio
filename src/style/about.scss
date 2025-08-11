@@ -1,83 +1,91 @@
 h1 {
     font-size: 8rem;
-    margin-top: 10rem;
-    margin-left: 4rem;
-}
-
-.back-img {
-    background-color: #999;
-    background-image: url();
+    margin: 10rem 0 0 4rem;
+  }
+  
+  .back-img {
     display: flex;
-
-    ul {
+    background: #999 url();
+  
+    .text-list {
+      .about-row {
         display: flex;
         align-items: center;
-
-        p {
-            background-color: #fff;
-            padding: 2rem;
-            width: 120px;
-            height: 120px;
-            border-radius: 1rem;
-            font-size: 7rem;
-            text-align: center;
-            margin: 1rem;
-            margin-top: 2rem;
+        gap: 10px;
+  
+        .about-icon {
+          display: inline-flex;
+          cursor: pointer;
+          background: #fff;
+          width: 120px; height: 120px;
+          padding: 2rem;
+          margin: 2rem 1rem 1rem;
+          border-radius: 1rem;
+          font-size: 7rem;
+          text-align: center;
         }
-
+  
         li {
-            font-size: 3rem;
-            background-color: #fff;
-            padding: 1rem;
-            border-radius: 1rem;
+          /* 기존 스타일 */
+          font-size: 3rem;
+          background: #fff;
+          padding: 1rem 3rem;
+          border-radius: 1rem;
+          margin-left: 2rem;
+  
+          /* 애니메이션 기본(숨김) */
+          clip-path: inset(0 100% 0 0);
+          opacity: 0;
+          transform: translateX(-8px);
+          transition: clip-path .45s ease-out, opacity .25s ease-out, transform .45s ease-out;
+          white-space: nowrap;
+          will-change: clip-path, opacity, transform;
         }
+  
+        /* 줄 전체 hover 시 펼침 */
+        &:hover > li {
+          clip-path: inset(0 0 0 0);
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
     }
-
+  
     .skill {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-left: 12rem;
-        h3 {
-            font-size: 5rem;
-            margin:2rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-left: 5rem;
+  
+      h3 {
+        font-size: 5rem;
+        margin: 2rem 0;
+      }
+  
+      .skill-img {
+        max-width: 300px;
+        height: 850px;
+        padding: 1rem 1rem;
+        margin-bottom: 5rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        background: rgba(0,0,0,.8);
+        border-radius: 2rem;
+  
+        img {
+          width: 50px; height: 50px;
+          margin: 2rem;
         }
-
-        .skill-img {
-            max-width: 300px;
-            height: 850px;
-            padding: 1rem 2rem;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); // 자동 반응형
-            gap: 14px;
-            padding: 0 1rem;
-            border-radius: 2rem;
-            margin-bottom: 5rem;
-            
-
-            img {
-                width: 50px;
-                height: 50px;
-                margin: 2rem 2rem;
-            }
-
-            .center-sass {
-                width: 100%;
-                grid-column: 1 / -1;
-                /* 두 컬럼 모두 차지 */
-                justify-self: center;
-                /* 가로 중앙 */
-                align-self: center;
-                /* 세로 중앙 */
-                display: grid;
-                place-items: center;
-                .sass{
-                    width: 80px;
-                    height: 50px;
-                }
-            }
+  
+        .center-sass {
+          grid-column: 1 / -1;
+          display: grid;
+          place-items: center;
+  
+          .sass { width: 80px; height: 50px; }
         }
+      }
     }
-}
+  }

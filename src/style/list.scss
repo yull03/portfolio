@@ -1,13 +1,16 @@
 #pro-text{
     display: flex;
-
+    justify-content: space-between;
+    .left-list{
+        margin-left: 1rem;
+    }
     .pro-title{
         font-size: 12rem;
-        padding-bottom: 10rem;
-        margin-top: 0;
+        margin-top: 10rem;
+        line-height: 0.6;
         span{
             font-size: 10rem;
-            padding-left: 35rem;
+            padding-left: 40rem;
         }
     }
     .pro-sub{
@@ -15,7 +18,7 @@
         color: #888;
         margin-top: 0;
         li{
-            margin: 2rem 1.2rem;
+            margin: 1.5rem 1.3rem;
             transition: transform .18s ease, color .18s ease;
             &:hover{
                 cursor: pointer;
@@ -25,11 +28,12 @@
         }
         .text-two, .text-four{
             text-align: end;
+            margin-left: 8rem;
         }
     }
     .image-list{
-        width: 40%;
-        margin-left: 5rem;
+        margin-top: 18rem;
+        margin-right: 5rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -40,24 +44,24 @@
             outline: none;
             border: none;
             font-size: 3rem;
-            border-radius: 5rem;
-            padding: 0.3rem 1.5rem;
+            border-radius: 5rem; 
             text-align: center;
-            margin: 2rem;
+
         }
         p{
             font-size: 3rem;
             line-height: 1;
         }
         .image-hidden{
-            width: 400px;
-            height: 800px;
+            text-align: center;
+            width: 750px;
+            height: 700px;
             background-color: #999;
             img{
-                padding: 1.5rem 0;
-                width: 400px;
-                height: 400px;
+                width: 650px;
+                height: 600px;
                 border-radius: 2rem;
+                padding: 1rem 0;
         }
         }
     }

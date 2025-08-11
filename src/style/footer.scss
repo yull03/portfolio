@@ -6,56 +6,61 @@
 .footer-title {
     padding:  0 2rem;
     margin: 0 auto 12px;
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: 8rem;
     line-height: 1;
     font-weight: 800;
 }
 
 .footer-content {
     position: relative;
-    height: 400px;
+    height: 600px;
     margin: 2rem auto 24px;
 }
 
 .footer-content .content {
     position: absolute;
     font-weight: 800;
-    font-size: clamp(1.2rem, 2.2vw, 2.4rem);
     white-space: nowrap;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
     padding: 2rem;
     margin-bottom: 5rem;
+    
 }
 .footer-content .content:nth-child(1) {
-    top: 60px;
-    left: 18%;
+    top: 40px;
+    left: 15%;
+    font-size: 4rem;
 }
 
 .footer-content .content:nth-child(2) {
-    top: 60px;
+    top: 30px;
     right: 14%;
+    font-size: 5rem;
 }
 
 .footer-content .content:nth-child(3) {
-    top: 120px;
-    left: 8%;
+    top: 230px;
+    left: 6%;
+    font-size: 3.5rem;
 }
 
 .footer-content .content:nth-child(4) {
-    top: 140px;
+    top: 180px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: clamp(1.6rem, 3vw, 3rem);
+    font-size: 4rem;
 }
 
 .footer-content .content:nth-child(5) {
-    top: 170px;
+    top: 400px;
     right: 12%;
+    font-size: 3rem;
 }
 
 .footer-content .content:nth-child(6) {
-    top: 210px;
+    top: 390px;
     left: 26%;
+    font-size: 3.5rem;
 }
 
 .info {

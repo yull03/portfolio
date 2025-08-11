@@ -35,11 +35,19 @@
         }
     }
 }
+.sticky-header {
+    position: sticky;
+    top: 0;            /* 필요하면 60px 같은 오프셋도 가능 */
+    z-index: 1000;
+    background: #fff;  /* 겹칠 때 내용 비침 방지 */
+    /* 옵션: 붙었을 때만 그림자 주고 싶으면 아래의 JS 보강 사용 */
+  }
 
 .main-bottom {
     margin: 1rem;
     margin-left: 2rem;
     display: flex;
+    align-items: center;
             margin-top:5rem;
 
     .img-box {
@@ -79,14 +87,17 @@
     }
     .bottom-text{
         .my-text{
+            display: inline-block;
         h1{
             font-size: 3rem;
-            margin-left: 12rem;
-            padding-bottom: 1.5rem;
+            margin: 1.5rem;
+            margin-left: 10rem;
+            
         }
-        li{
-            font-size: 1.5rem;
-            margin-left: 13rem;
+        .sub-text{
+            font-size: 2rem;
+            margin-left: 15rem;
+            font-weight: bold;
         }
     }
         .git{
@@ -94,8 +105,8 @@
             justify-content: center;
             align-items: center;
             flex-direction: row;
-            margin-top: 5rem;
-            margin-left: 15rem;
+            margin-top: 2rem;
+            margin-left: 35rem;
             h3{
                 font-size: 3rem;
                 margin-left: 10rem;
