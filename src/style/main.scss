@@ -6,12 +6,58 @@
     display: flex;
     justify-content: space-between;
 
+
     .image {
-        img {
-            width: 700px;
-            height: 700px;
-        }
-    }
+        /* 표시 크기와 여유 공간(패딩)만 상황에 맞게 조절해요 */
+        --w: 700px;     /* 실제 보여줄 원본 이미지의 너비 */
+        --h: 690px;     /* 실제 보여줄 원본 이미지의 높이(비율에 맞게) */
+        --pad: 24px;    /* 바깥쪽 여유 공간: 좌/우/상/하 여백 -> 외곽 타일도 효과 보임 */
+        --scale: 0.9;  /* hover 확대 비율 */
+        --move: 30px;
+        --gap: 30px;   /* hover 시 바깥쪽 이동(px) */
+      
+        width: calc(var(--w) + var(--pad) * 2);
+        height: calc(var(--h) + var(--pad) * 2);
+        padding: var(--pad);
+        gap: 0;              /* 외곽 여백 */
+        box-sizing: content-box;          /* 패딩이 내부 여유가 되도록 */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows:    repeat(3, 1fr);
+        place-content: center;            /* 중앙 정렬 */
+        background: transparent;
+      }
+      
+      
+      .image > span {
+        /* 각 타일은 같은 이미지를 다른 영역으로 보여줌 */
+        background-repeat: no-repeat;
+        background-size: 300% 300%;       /* 3x3 정확 분할 */
+        transition: transform 0.35s ease;  /* 투명 효과 없음 */
+      }
+      
+      .image > span:nth-child(1) { background-position:   0%   0%; }
+.image > span:nth-child(2) { background-position:  50%   0%; }
+.image > span:nth-child(3) { background-position: 100%   0%; }
+.image > span:nth-child(4) { background-position:   0%  50%; }
+.image > span:nth-child(5) { background-position:  50%  50%; }
+.image > span:nth-child(6) { background-position: 100%  50%; }
+.image > span:nth-child(7) { background-position:   0% 100%; }
+.image > span:nth-child(8) { background-position:  50% 100%; }
+.image > span:nth-child(9) { background-position: 100% 100%; }
+.image > span:nth-child(5):hover {
+    transform: scale(var(--scale));
+  }
+
+/* hover: 확대 + 방향별 살짝 바깥 이동 (중앙은 이동 없이 확대만) */
+.image > span:nth-child(1):hover { transform: translate(calc(-1 * var(--move)), calc(-1 * var(--move))); }
+.image > span:nth-child(2):hover { transform: translate(0,calc(-1 * var(--move))); }
+.image > span:nth-child(3):hover { transform: translate(var(--move),                calc(-1 * var(--move))); }
+.image > span:nth-child(4):hover { transform: translate(calc(-1 * var(--move)), 0); }
+.image > span:nth-child(6):hover { transform: translate(var(--move), 0); }
+.image > span:nth-child(7):hover { transform: translate(calc(-1 * var(--move)), var(--move)); }
+.image > span:nth-child(8):hover { transform: translate(0,var(--move)); }
+.image > span:nth-child(9):hover { transform: translate(var(--move),var(--move)); }
 
     .main-text {
         margin-top: 0;

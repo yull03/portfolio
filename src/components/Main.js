@@ -8,11 +8,18 @@ import Project from "./Project";
 import Publishing from "./Publishing";
 
 const Main = () => {
+    const src = `${process.env.PUBLIC_URL}/images/mainimg.png`;
 
     return (
         <div id="all-style">
         <div className="top">
-          <div className="image"><img alt="" /></div>
+
+        <div className="image">
+      {Array.from({ length: 9 }).map((_, i) => (
+        <span key={i} style={{ backgroundImage: `url(${src})` }} />
+      ))}
+    </div>
+
           <div className="main-text">
             <p className="one">Front</p>
             <p className="two">End</p>

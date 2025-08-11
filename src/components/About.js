@@ -14,7 +14,7 @@ const About = () => {
     <div>
       <h1>About Me</h1>
       <div>
-        <div className="back-img">
+        <div className="back-img" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/aboutme.png)` }}>
           <div className="text-list">
             {items.map((it, i) => (
               <ul key={i} className="about-row">

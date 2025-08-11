@@ -1,6 +1,8 @@
 #list-wrap{
     display: flex;
     align-items: center;
+
+    margin-top: 4rem;
     .list-main{
         margin-top: 0;
         .and{
@@ -17,10 +19,8 @@
         display: flex;
         justify-content: center;
         width: 50%;
-        margin: 0;
-        background-color: #999;
         img{
-            width: 800px;
+            width: 100%;
             height: 1000px;
         }
     }

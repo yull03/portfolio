@@ -28,7 +28,7 @@ const Project = () => {
             </ul>
             </div>
             <div className="right">
-            <img/>
+            <img src={`${process.env.PUBLIC_URL}/images/work.png`} alt="프로젝트 꾸밈 이미지"/>
             </div>
         </section>
     );
