@@ -1,5 +1,6 @@
 import About from "./About";
 import Clone from "./Clone";
+import Footer from "./Footer";
 import Header from "./Header";
 import List from "./List";
 import Project from "./Project";
@@ -50,6 +51,7 @@ const Main = () => {
             <List/>
             <Clone/>
             <Publishing/>
+            <Footer/>
         </div>
     );
 };

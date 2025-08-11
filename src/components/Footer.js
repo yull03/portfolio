@@ -1,27 +1,27 @@
 
 const Footer = () => {
     return (
-        <footer>
-            <h1>Other Goals</h1>
+        <footer className="footer">
+            <h1 className="footer-title">Other Goals</h1>
 
-            <div>
-                <span>Back-end</span>
-                <span>Vue</span>
-                <span>Linux</span>
-                <span>full-stack developer</span>
-                <span>TypeScript</span>
-                <span>Obtain</span>
+            <div className="footer-content">
+                <span className="content">Back-end</span>
+                <span className="content">Vue</span>
+                <span className="content">Linux</span>
+                <span className="content">full-stack developer</span>
+                <span className="content">TypeScript</span>
+                <span className="content">Obtain</span>
             </div>
 
-            <section>
-                <div>
-                    <p>연락처</p> 010-4721-6271
+            <section className="info">
+                <div className="footer-item">
+                    <p className="footer-label">연락처</p> 010-4721-6271
                 </div>
-                <div>
-                    <p>이메일</p> yull03@naver.com
+                <div className="footer-item">
+                    <p className="footer-label">이메일</p> yull03@naver.com
                 </div>
-                <div>
-                    <p>깃허브</p>{" "}
+                <div className="footer-item">
+                    <p className="footer-label">깃허브</p>
                     <a href="https://github.com/yull03">https://github.com/yull03</a>
                 </div>
             </section>
