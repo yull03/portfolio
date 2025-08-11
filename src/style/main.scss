@@ -59,27 +59,41 @@
 .image > span:nth-child(8):hover { transform: translate(0,var(--move)); }
 .image > span:nth-child(9):hover { transform: translate(var(--move),var(--move)); }
 
-    .main-text {
-        margin-top: 0;
-        text-align: right;
-        font-size: 10rem;
-
-        .one {
-            margin-right: 15rem;
-            line-height: 1;
-        }
-
-        .two {
-            margin-right: 5rem;
-            line-height: 1;
-            padding: 1.5rem;
-        }
-
-        .three {
-            font-size: 12rem;
-            line-height: 2.5;
-        }
+.main-text {
+    /* font-size: 10rem;  ← 제거 */
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;    /* 오른쪽 정렬 */
+    gap: 0.4rem;              /* 줄 간 간격 */
+    overflow: hidden;
+  
+    p {
+      display: block;         /* 한 줄로 취급 */
+      margin: 0;
+      white-space: nowrap;    /* 줄바꿈 방지 */
     }
+  
+    .char {
+      display: inline-block;  /* 글자별 애니메이션 */
+      will-change: transform, opacity;
+      transform-origin: top center;
+    }
+  
+    .one {
+      font-size: 8rem;
+      margin-right: 15rem;    /* 필요 시 위치 보정 */
+    }
+  
+    .two {
+      font-size: 6rem;
+      margin-right: 5rem;
+    }
+  
+    .three {
+      font-size: 10rem;
+    }
+  }
 }
 .sticky-header {
     position: sticky;
@@ -103,11 +117,14 @@
         width: 500px;
         height: 250px;
         position: relative;
+        overflow: hidden;
 
         img {
             width: 300px;
             height: 220px;
             margin: 0 0.5rem;
+            object-fit: cover; /* 선택: 비율 유지하며 채우기 */
+    display: block;
         }
 
         .box-text {

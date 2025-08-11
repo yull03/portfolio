@@ -2,7 +2,9 @@
 const Clone = () => {
     return (
         <section>
+            <section id="clone">
             <h1 className="clone-title">Clone coding</h1>
+            </section>
             <div className="contents-wrap">
             <div className="clone-contents">
                 <div className="clone-card">

@@ -1,10 +1,14 @@
 #list-wrap{
     display: flex;
     align-items: center;
+    overflow: hidden; 
 
     margin-top: 4rem;
     .list-main{
+        font-size: 8rem;
         margin-top: 0;
+        display: inline-block;
+  .from-left, .from-right, .center { display: inline-block; }
         .and{
             color: red;
             font-size: 7rem;
@@ -13,15 +17,26 @@
         .last-text{
             padding-left: 35rem;
             margin-right: 2rem;
+            font-size: 8rem;
         }
     }
     .right{
         display: flex;
         justify-content: center;
-        width: 50%;
+        width: 60%;
+        height: 1000px;
+        position: relative;
+  overflow: hidden;
         img{
             width: 100%;
             height: 1000px;
+            position: absolute;
+            inset: 0;
+            object-fit: cover;
+            opacity: 0;                 /* GSAP가 autoAlpha로 제어 */
+            transition: none !important; /* ← 이게 핵심! */
+            will-change: opacity;
+
         }
     }
     .project-list{
