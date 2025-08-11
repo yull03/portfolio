@@ -1,0 +1,42 @@
+#list-wrap{
+    display: flex;
+    align-items: center;
+    .list-main{
+        margin-top: 0;
+        .and{
+            color: red;
+            font-size: 7rem;
+            padding-left: 25rem;
+        }
+        .last-text{
+            padding-left: 35rem;
+            margin-right: 2rem;
+        }
+    }
+    .right{
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        margin: 0;
+        background-color: #999;
+        img{
+            width: 800px;
+            height: 1000px;
+        }
+    }
+    .project-list{
+        li{
+            margin: 0 1rem;
+            padding: 0 1rem;
+            margin-top: 1rem;
+            border-bottom: 1px solid #222;
+            h2{
+                padding: 0.5rem 1rem;
+            }
+            p{
+                padding: 0.3rem 0.5rem;
+                color: #555;
+            }
+        }
+    }
+}

@@ -1,5 +1,9 @@
 import About from "./About";
+import Clone from "./Clone";
 import Header from "./Header";
+import List from "./List";
+import Project from "./Project";
+import Publishing from "./Publishing";
 
 const Main = () => {
     return (
@@ -42,6 +46,10 @@ const Main = () => {
                 </div>
             </div>
             <About/>
+            <Project/>
+            <List/>
+            <Clone/>
+            <Publishing/>
         </div>
     );
 };

@@ -1,0 +1,44 @@
+#card-main{
+    padding-bottom: 5rem;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid #222;
+}
+h1{
+    margin-bottom: 8rem;
+}
+#card-wrap{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: 1400px;
+    padding: 0;
+    
+    .item-title{
+        position: relative;
+        width: 100%;
+                h2{
+            font-size: 3.5rem;
+            position: absolute;
+            top: -8%;
+            left: 15.5rem;
+
+            transform: translateX(-50%);
+        }
+    }
+    .item-card{
+        width: 800px;
+        height: 450px;
+        background-color: #999;
+        border-radius: 2rem;
+        padding: 0 2rem;
+        img{
+            margin-top: 2rem;
+            width: 350px;
+            height: 350px;
+            border-radius: 3rem;
+            background-color: #fff;
+        }
+    }
+}

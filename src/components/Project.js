@@ -2,12 +2,13 @@
 
 const Project = () => {
     return (
-        <section>
-            <h1>
-                My Work <span>and</span> Project
+        <section id="list-wrap">
+            <div className="left">
+            <h1 className="list-main">
+                My Work <br/><span className="and">and<br/></span> <span className="last-text">Project</span>
             </h1>
 
-            <ul>
+            <ul className="project-list">
                 <li>
                     <h2>굿즈 쇼핑몰 - 팀프로젝트</h2>
                     <p>굿즈 쇼핑몰 사용자 경험에 있어 편리함을 제공하기 위함을 목적으로 제작하였습니다.</p>
@@ -25,8 +26,10 @@ const Project = () => {
                     <p>JSON 파일을 연동하여 카테고리별 정보를 제공하는 퀴즈입니다.</p>
                 </li>
             </ul>
-
+            </div>
+            <div className="right">
             <img/>
+            </div>
         </section>
     );
 };
