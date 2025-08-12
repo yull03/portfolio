@@ -218,7 +218,7 @@ const List = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="github-link"
-                            data-cursor-img="/images/goods.png"
+                            data-cursor-img={`${process.env.PUBLIC_URL}/images/goods.png`}
                             data-cursor-text="Git-hub로 이동"
                         >
                             Goods-Mall
@@ -230,7 +230,7 @@ const List = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="github-link"
-                            data-cursor-img="/images/parking.png"
+                            data-cursor-img={`${process.env.PUBLIC_URL}/images/parking.png`}
                             data-cursor-text="Git-hub로 이동"
                         >
                             Parking
@@ -242,7 +242,7 @@ const List = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="github-link"
-                            data-cursor-img="/images/game.png"
+                            data-cursor-img={`${process.env.PUBLIC_URL}/images/game.png`}
                             data-cursor-text="Git-hub로 이동"
                         >
                             Word-Game
@@ -254,7 +254,7 @@ const List = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="github-link"
-                            data-cursor-img="/images/quiz.png"
+                            data-cursor-img={`${process.env.PUBLIC_URL}/images/quiz.png`}
                             data-cursor-text="Git-hub로 이동"
                         >
                             Quiz-Game
