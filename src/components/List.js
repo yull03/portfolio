@@ -1,10 +1,12 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const List = () => {
     const titleRef = useRef(null);
     const trackRef = useRef(null);
-    const [index, setIndex] = useState(1); // 1부터 시작 (앞에 클론이 있기 때문)
+    const [index, setIndex] = useState(1);
     const intervalRef = useRef(null);
     const restartTimeoutRef = useRef(null);
 
@@ -13,11 +15,10 @@ const List = () => {
         { src: `${process.env.PUBLIC_URL}/images/parking.png`, alt: "주차장", href: "https://yull03.github.io/parkin-yull/" },
         { src: `${process.env.PUBLIC_URL}/images/game.png`, alt: "끝말잇기", href: "https://yull03.github.io/maingame/" },
         { src: `${process.env.PUBLIC_URL}/images/quiz.png`, alt: "퀴즈", href: "https://yull03.github.io/quiz/" },
-
     ];
 
+    /* -------- 커스텀 커서 -------- */
     useEffect(() => {
-        // 1) body에 커서 DOM 생성 + 스타일 인라인 적용 (CSS 없어도 보이게)
         const cursor = document.createElement("div");
         cursor.className = "custom-cursor";
         Object.assign(cursor.style, {
@@ -47,40 +48,28 @@ const List = () => {
             height: "150px",
             objectFit: "contain",
             display: "block",
-            borderRadius: "10rem"
+            borderRadius: "10rem",
         });
 
         const textEl = document.createElement("span");
-
         cursor.appendChild(imgEl);
         cursor.appendChild(textEl);
         document.body.appendChild(cursor);
 
-        // 2) 이벤트 바인딩
         const links = document.querySelectorAll(".github-link");
-
         const onMove = (e) => {
             cursor.style.left = `${e.clientX + 20}px`;
             cursor.style.top = `${e.clientY}px`;
         };
-
         const onEnter = (e) => {
             const a = e.currentTarget;
             const src = a.getAttribute("data-cursor-img") || "";
             const label = a.getAttribute("data-cursor-text") || "";
-
             textEl.textContent = label;
-            if (src) {
-                imgEl.src = src;    // 선로딩 없이 바로 표시 (확실히 보이게)
-            } else {
-                imgEl.removeAttribute("src");
-            }
+            if (src) imgEl.src = src; else imgEl.removeAttribute("src");
             cursor.style.opacity = "1";
         };
-
-        const onLeave = () => {
-            cursor.style.opacity = "0";
-        };
+        const onLeave = () => { cursor.style.opacity = "0"; };
 
         window.addEventListener("mousemove", onMove);
         links.forEach((a) => {
@@ -88,7 +77,6 @@ const List = () => {
             a.addEventListener("mouseleave", onLeave);
         });
 
-        // 3) 정리
         return () => {
             window.removeEventListener("mousemove", onMove);
             links.forEach((a) => {
@@ -98,11 +86,11 @@ const List = () => {
             cursor.remove();
         };
     }, []);
+
+    /* -------- 슬라이더 -------- */
     const goTo = (i, animate = true) => {
         const track = trackRef.current;
         if (!track) return;
-
-        const total = images.length;
         setIndex(i);
         gsap.to(track, {
             yPercent: -100 * i,
@@ -110,57 +98,38 @@ const List = () => {
             ease: "power3.inOut",
         });
     };
-
     const startAutoSlide = () => {
         clearInterval(intervalRef.current);
-        intervalRef.current = setInterval(() => {
-            setIndex((prev) => prev + 1);
-        }, 3000);
+        intervalRef.current = setInterval(() => setIndex((p) => p + 1), 3000);
     };
-
     const stopAutoSlide = () => {
         clearInterval(intervalRef.current);
         clearTimeout(restartTimeoutRef.current);
-        restartTimeoutRef.current = setTimeout(() => {
-            startAutoSlide();
-        }, 5000); // 5초 후 재시작
+        restartTimeoutRef.current = setTimeout(startAutoSlide, 5000);
     };
+    const next = () => { stopAutoSlide(); setIndex((p) => p + 1); };
+    const prev = () => { stopAutoSlide(); setIndex((p) => p - 1); };
 
-    const next = () => {
-        stopAutoSlide();
-        setIndex((prev) => prev + 1);
-    };
-    const prev = () => {
-        stopAutoSlide();
-        setIndex((prev) => prev - 1);
-    };
-
-    // 자동 재생
     useEffect(() => {
-        intervalRef.current = setInterval(() => {
-            next();
-        }, 3000); // 3초마다 다음 슬라이드
+        intervalRef.current = setInterval(next, 3000);
         return () => clearInterval(intervalRef.current);
     }, []);
 
-    // 인덱스 변경 시 이동 처리
     useEffect(() => {
         const total = images.length;
         const track = trackRef.current;
         if (!track) return;
-
         if (index === total + 1) {
-            // 마지막 클론에서 → 첫 번째 실제로 점프
-            goTo(1, true); // 마지막 클론까지 애니메이션
-            setTimeout(() => goTo(1, false), 610); // 첫 번째로 점프 (애니메이션X)
+            goTo(1, true);
+            setTimeout(() => goTo(1, false), 610);
         } else if (index === 0) {
-            // 첫 번째 클론에서 → 마지막 실제로 점프
             goTo(0, true);
             setTimeout(() => goTo(total, false), 610);
         } else {
             goTo(index, true);
         }
     }, [index]);
+
     useEffect(() => {
         startAutoSlide();
         return () => {
@@ -168,52 +137,70 @@ const List = () => {
             clearTimeout(restartTimeoutRef.current);
         };
     }, []);
-    // 제목 애니메이션 (기존 코드 그대로 유지)
+
+    /* -------- 제목 애니메이션 (ScrollTrigger로 80% 지점에서 시작) -------- */
     useLayoutEffect(() => {
         const root = titleRef.current;
-        if (!root || root.dataset.splitted === "true") return;
-        root.dataset.splitted = "true";
+        if (!root) return;
 
-        const lines = Array.from(root.querySelectorAll(".title-line"));
-        lines.forEach((line) => {
-            const text = line.textContent;
-            line.textContent = "";
-            const frag = document.createDocumentFragment();
-            for (const ch of text) {
-                const span = document.createElement("span");
-                span.className = "letter";
-                span.innerHTML = ch === " " ? "&nbsp;" : ch;
-                frag.appendChild(span);
-            }
-            line.appendChild(frag);
-        });
-
-        const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-        lines.forEach((line, idx) => {
-            const letters = Array.from(line.querySelectorAll(".letter"));
-            const mid = Math.floor((letters.length - 1) / 2);
-            const order = [];
-            let step = 0;
-            while (order.length < letters.length) {
-                const r = mid + step;
-                const l = mid - step;
-                if (step === 0) {
-                    if (letters[mid]) order.push(letters[mid]);
-                } else {
-                    if (letters[r]) order.push(letters[r]);
-                    if (letters[l]) order.push(letters[l]);
+        // 문자 분해(한 번만)
+        if (root.dataset.splitted !== "true") {
+            root.dataset.splitted = "true";
+            const lines = Array.from(root.querySelectorAll(".title-line"));
+            lines.forEach((line) => {
+                const text = line.textContent;
+                line.textContent = "";
+                const frag = document.createDocumentFragment();
+                for (const ch of text) {
+                    const span = document.createElement("span");
+                    span.className = "letter";
+                    span.innerHTML = ch === " " ? "&nbsp;" : ch;
+                    frag.appendChild(span);
                 }
-                step++;
-            }
-            gsap.set(letters, { autoAlpha: 0, y: -30, scale: 0.9 });
-            tl.to(order, {
-                autoAlpha: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.45,
-                stagger: 0.05,
-            }, idx * 0.15);
-        });
+                line.appendChild(frag);
+            });
+        }
+
+        const ctx = gsap.context(() => {
+            const lines = Array.from(root.querySelectorAll(".title-line"));
+            // 트리거 전 숨김
+            gsap.set(root.querySelectorAll(".letter"), { autoAlpha: 0, y: -30, scale: 0.9 });
+
+            const tl = gsap.timeline({
+                defaults: { ease: "power2.out" },
+                scrollTrigger: {
+                    trigger: root,     // 타이틀이
+                    start: "top 80%",  // 뷰포트 80% 지점에 올 때 시작
+                    once: true,        // 한 번만 재생
+                    // markers: true,
+                },
+            });
+
+            lines.forEach((line, idx) => {
+                const letters = Array.from(line.querySelectorAll(".letter"));
+                const mid = Math.floor((letters.length - 1) / 2);
+                const order = [];
+                let step = 0;
+                while (order.length < letters.length) {
+                    const r = mid + step, l = mid - step;
+                    if (step === 0) { if (letters[mid]) order.push(letters[mid]); }
+                    else {
+                        if (letters[r]) order.push(letters[r]);
+                        if (letters[l]) order.push(letters[l]);
+                    }
+                    step++;
+                }
+                tl.to(order, {
+                    autoAlpha: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.45,
+                    stagger: 0.05,
+                }, idx * 0.15);
+            });
+        }, root);
+
+        return () => ctx.revert();
     }, []);
 
     return (
@@ -223,8 +210,6 @@ const List = () => {
                     <span className="title-line">Project</span>
                     <span className="title-line">List</span>
                 </h1>
-
-                {/* 커스텀 커서 */}
 
                 <ul className="pro-sub">
                     <li className="text-one">
@@ -276,7 +261,6 @@ const List = () => {
                         </a>
                     </li>
                 </ul>
-
             </div>
 
             <div className="image-list">
@@ -284,7 +268,7 @@ const List = () => {
                 <p>Prev</p>
                 <div className="image-hidden">
                     <div className="image-track" ref={trackRef}>
-                        {/* 마지막 이미지 클론 */}
+                        {/* 마지막 클론 */}
                         <a
                             className="slide"
                             href={images[images.length - 1].href}
@@ -311,7 +295,7 @@ const List = () => {
                             </a>
                         ))}
 
-                        {/* 첫 번째 이미지 클론 */}
+                        {/* 첫 번째 클론 */}
                         <a
                             className="slide"
                             href={images[0].href}
