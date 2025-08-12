@@ -79,7 +79,7 @@ const Clone = () => {
                             <li>
                                 <span className="mark"> ● </span>프로젝트 설명
                                 <p>
-                                    <span className="text-small">- 클론 사이트: <a href="https://www.airbnb.co.kr/">https://www.airbnb.co.kr/</a></span><br />
+                                    <span className="text-small">- 클론 사이트: <a href="https://yull03.github.io/AIRBNB/index.html" target="_blank">https://yull03.github.io/AIRBNB/index.html</a></span><br />
                                     <span className="text-small">- 카드형 아이템 제작과 UI / UX를 중점으로 제작된 사이트 입니다</span>
                                 </p>
                             </li>
@@ -104,7 +104,7 @@ const Clone = () => {
                             <li>
                                 <span className="mark"> ● </span>프로젝트 설명
                                 <p>
-                                    <span className="text-small">- 클론 사이트: <a href="https://www.tesla.com/ko_kr">https://www.tesla.com/ko_kr</a></span><br />
+                                    <span className="text-small">- 클론 사이트: <a href="https://yull03.github.io/tesla/index.html" target="_blank">https://yull03.github.io/tesla/index.html</a></span><br />
                                     <span className="text-small">- 반응형 처리와 레이아웃 구성 방식을 학습하기 위해 제작된 프로젝트 입니다</span>
                                 </p>
                             </li>
@@ -129,7 +129,7 @@ const Clone = () => {
                             <li>
                                 <span className="mark"> ● </span>프로젝트 설명
                                 <p>
-                                    <span className="text-small">- 클론 사이트: <a href="https://www.netflix.com/kr/">https://www.netflix.com/kr/</a></span><br />
+                                    <span className="text-small">- 클론 사이트: <a href="https://yull03.github.io/-git/" target="_blank">https://yull03.github.io/-git/</a></span><br />
                                     <span className="text-small">- React 기반 클론코딩을 진행하여 사용자 흐름을 구현.</span>
                                 </p>
                             </li>
