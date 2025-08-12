@@ -4,14 +4,23 @@
     padding: 56px 0 0;
 }
 .footer-title {
+    display: inline-block;
+    visibility: hidden;
     padding:  0 2rem;
     margin: 0 auto 12px;
     font-size: 8rem;
     line-height: 1;
     font-weight: 800;
 }
+.ft-letter, .ft-burst { 
+    display: inline-block; 
+    will-change: transform, opacity, clip-path; 
+}
 
 .footer-content {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.8rem 1.2rem; 
     position: relative;
     height: 600px;
     margin: 2rem auto 24px;
