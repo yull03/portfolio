@@ -6,7 +6,7 @@ import Header from "./Header";
 import List from "./List";
 import Project from "./Project";
 import Publishing from "./Publishing";
-import React, { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const Main = () => {

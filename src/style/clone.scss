@@ -1,5 +1,18 @@
+
+
 .clone-title {
     margin: 5rem 0;
+    font-size: 10rem;
+    display: inline-block;
+    overflow: visible;
+}
+.reveal-text {
+    display: inline-block;                 /* clip-path가 먹도록 */
+    will-change: clip-path, transform, opacity;
+    -webkit-clip-path: inset(0 100% 0 0);  /* 왼쪽에서 오른쪽으로 열리게 */
+            clip-path: inset(0 100% 0 0);
+    transform: translateX(-8px);
+    opacity: 0;
 }
 
 .clone-contents {
@@ -8,22 +21,37 @@
     border-bottom: 1px solid #222;
     padding-bottom: 2rem;
     .clone-card {
+        position: relative;
+        overflow: hidden;
         text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        border-radius: 12px;
+        a {
+            display: block;
+        }
         h2 {
             font-size: 5rem;
             padding-top: 2rem;
             color: #666;
         }
         img {
-            width: 500px;
-            height: 500px;
-            padding: 0 1rem;
-            border-radius: 2rem;
+            padding: 1rem;
+            display: block;
+            width: 450px;
+            height: auto;
+            border-radius: 3rem;
+            margin: 0 2rem;
+            transform: translateZ(0);
+            transition: transform .35s cubic-bezier(.2,.8,.2,1);
+            will-change: transform;
         }
+&:hover img,
+  & > a:focus-visible img {
+    transform: translateZ(0) scale(1.06);  /* 필요하면 1.08로 */
+  }
     }
     .clone-text-box{
         display: flex;
