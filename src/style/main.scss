@@ -1,184 +1,189 @@
-#all-style {
-    @include font
+#all-style { 
+  @include font; 
 }
 
+/* ================== 상단(타일 이미지 + 타이포) ================== */
 .top {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
+  .image {
+    /* 타일 크기/효과 파라미터 */
+    --w: 700px;
+    --h: 690px;
+    --pad: 24px;
+    --scale: 0.9;
+    --move: 30px;
+    --gap: 30px;
 
-    .image {
-        /* 표시 크기와 여유 공간(패딩)만 상황에 맞게 조절해요 */
-        --w: 700px;     /* 실제 보여줄 원본 이미지의 너비 */
-        --h: 690px;     /* 실제 보여줄 원본 이미지의 높이(비율에 맞게) */
-        --pad: 24px;    /* 바깥쪽 여유 공간: 좌/우/상/하 여백 -> 외곽 타일도 효과 보임 */
-        --scale: 0.9;  /* hover 확대 비율 */
-        --move: 30px;
-        --gap: 30px;   /* hover 시 바깥쪽 이동(px) */
-      
-        width: calc(var(--w) + var(--pad) * 2);
-        height: calc(var(--h) + var(--pad) * 2);
-        padding: var(--pad);
-        gap: 0;              /* 외곽 여백 */
-        box-sizing: content-box;          /* 패딩이 내부 여유가 되도록 */
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows:    repeat(3, 1fr);
-        place-content: center;            /* 중앙 정렬 */
-        background: transparent;
-      }
-      
-      
-      .image > span {
-        /* 각 타일은 같은 이미지를 다른 영역으로 보여줌 */
-        background-repeat: no-repeat;
-        background-size: 300% 300%;       /* 3x3 정확 분할 */
-        transition: transform 0.35s ease;  /* 투명 효과 없음 */
-      }
-      
-      .image > span:nth-child(1) { background-position:   0%   0%; }
-.image > span:nth-child(2) { background-position:  50%   0%; }
-.image > span:nth-child(3) { background-position: 100%   0%; }
-.image > span:nth-child(4) { background-position:   0%  50%; }
-.image > span:nth-child(5) { background-position:  50%  50%; }
-.image > span:nth-child(6) { background-position: 100%  50%; }
-.image > span:nth-child(7) { background-position:   0% 100%; }
-.image > span:nth-child(8) { background-position:  50% 100%; }
-.image > span:nth-child(9) { background-position: 100% 100%; }
-.image > span:nth-child(5):hover {
-    transform: scale(var(--scale));
+    width: calc(var(--w) + var(--pad) * 2);
+    height: calc(var(--h) + var(--pad) * 2);
+    padding: var(--pad);
+    box-sizing: content-box;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    place-content: center;
+    background: transparent;
+    gap: 0;
   }
 
-/* hover: 확대 + 방향별 살짝 바깥 이동 (중앙은 이동 없이 확대만) */
-.image > span:nth-child(1):hover { transform: translate(calc(-1 * var(--move)), calc(-1 * var(--move))); }
-.image > span:nth-child(2):hover { transform: translate(0,calc(-1 * var(--move))); }
-.image > span:nth-child(3):hover { transform: translate(var(--move),                calc(-1 * var(--move))); }
-.image > span:nth-child(4):hover { transform: translate(calc(-1 * var(--move)), 0); }
-.image > span:nth-child(6):hover { transform: translate(var(--move), 0); }
-.image > span:nth-child(7):hover { transform: translate(calc(-1 * var(--move)), var(--move)); }
-.image > span:nth-child(8):hover { transform: translate(0,var(--move)); }
-.image > span:nth-child(9):hover { transform: translate(var(--move),var(--move)); }
+  .image > span {
+    display: block;
+    background-repeat: no-repeat;
+    background-size: 300% 300%;
+    transition: transform .35s ease;
+  }
+  .image > span:nth-child(1) { background-position:   0%   0%; }
+  .image > span:nth-child(2) { background-position:  50%   0%; }
+  .image > span:nth-child(3) { background-position: 100%   0%; }
+  .image > span:nth-child(4) { background-position:   0%  50%; }
+  .image > span:nth-child(5) { background-position:  50%  50%; }
+  .image > span:nth-child(6) { background-position: 100%  50%; }
+  .image > span:nth-child(7) { background-position:   0% 100%; }
+  .image > span:nth-child(8) { background-position:  50% 100%; }
+  .image > span:nth-child(9) { background-position: 100% 100%; }
 
-.main-text {
-    /* font-size: 10rem;  ← 제거 */
+  /* 중앙 타일만 확대 */
+  .image > span:nth-child(5):hover { transform: scale(var(--scale)); }
+  /* 주변 타일은 방향별 살짝 이동 */
+  .image > span:nth-child(1):hover { transform: translate(calc(-1 * var(--move)), calc(-1 * var(--move))); }
+  .image > span:nth-child(2):hover { transform: translate(0, calc(-1 * var(--move))); }
+  .image > span:nth-child(3):hover { transform: translate(var(--move), calc(-1 * var(--move))); }
+  .image > span:nth-child(4):hover { transform: translate(calc(-1 * var(--move)), 0); }
+  .image > span:nth-child(6):hover { transform: translate(var(--move), 0); }
+  .image > span:nth-child(7):hover { transform: translate(calc(-1 * var(--move)), var(--move)); }
+  .image > span:nth-child(8):hover { transform: translate(0, var(--move)); }
+  .image > span:nth-child(9):hover { transform: translate(var(--move), var(--move)); }
+
+  .main-text {
     margin-top: 10rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;    /* 오른쪽 정렬 */
-    gap: 0.4rem;              /* 줄 간 간격 */
+    align-items: flex-end;
+    gap: .4rem;
     overflow: hidden;
-  
+
     p {
-      display: block;         /* 한 줄로 취급 */
+      display: block;
       margin: 0;
-      white-space: nowrap;    /* 줄바꿈 방지 */
+      white-space: nowrap;
     }
-  
     .char {
-      display: inline-block;  /* 글자별 애니메이션 */
+      display: inline-block;
       will-change: transform, opacity;
       transform-origin: top center;
     }
-  
-    .one {
-      font-size: 8rem;
-      margin-right: 15rem;    /* 필요 시 위치 보정 */
-    }
-  
-    .two {
-      font-size: 6rem;
-      margin-right: 5rem;
-    }
-  
-    .three {
-      font-size: 10rem;
-    }
+    .one { font-size: 8rem;  margin-right: 15rem; }
+    .two { font-size: 6rem;  margin-right: 5rem; }
+    .three { font-size: 10rem; }
   }
 }
-.sticky-header {
-    position: sticky;
-    top: 0;            /* 필요하면 60px 같은 오프셋도 가능 */
-    z-index: 1000;
-    background: #fff;  /* 겹칠 때 내용 비침 방지 */
-    /* 옵션: 붙었을 때만 그림자 주고 싶으면 아래의 JS 보강 사용 */
+
+/* ================== 스티키 헤더 ================== */
+.sticky-header{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+}
+
+/* ================== 메인 하단(이미지 슬라이더 + 정보) ================== */
+.main-bottom{
+  margin: 10rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .img-box{
+    /* 좌: 이미지(슬라이드), 우: 텍스트 */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px; /* 우측 폭 필요시 조절 */
+    align-items: stretch;
+    width: 630px;
+    height: 240px;           /* 한 장 높이(슬라이드 기준) */
+    border-radius: 16px;
+  }
+  .img-viewport{
+    grid-column: 1 / 2;
+    height: 100%;
+    overflow: hidden;        /* 클리핑은 여기에서! */
+    border-radius: 16px 0 0 16px;
+    background: #00000010;
   }
 
-.main-bottom {
-    margin: 1rem;
-    margin-left: 2rem;
+  /* 세로 슬라이드 트랙: 여기만 overflow */
+  .img-track{
+    grid-column: 1 / 2;
     display: flex;
-    align-items: center;
-            margin-top:5rem;
-
-    .img-box {
-        display: flex;
-        align-items: center;
-        background-color: #999;
-        width: 500px;
-        height: 250px;
-        position: relative;
-        overflow: hidden;
-
-        img {
-            width: 300px;
-            height: 220px;
-            margin: 0 0.5rem;
-            object-fit: cover; /* 선택: 비율 유지하며 채우기 */
+    flex-direction: column;
+    border-radius: 16px 0 0 16px; /* 좌측 모서리만 라운드 */
+    background: #00000010;
+  }
+  .img-track img{
+    width: 380px;
+    height: 240px;                /* .img-box 높이와 동일해야 한 장씩 정확 */
+    object-fit: cover;            /* 필요시 contain */
+    user-select: none;
+    pointer-events: none;
     display: block;
-        }
+  }
 
-        .box-text {
-            display: block;
-            position: absolute;
-            bottom: 1rem;
-            right: 0;
+  .box-text{
+    grid-column: 2 / 3;
+    background: #9a9a9a;
+    color: #111;
+    border-radius: 0 16px 16px 0; /* 우측 모서리 라운드 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 20px;
 
-            ul {
-                display: flex;
-                flex-direction: column;
-                padding: 0 0.5rem;
-                line-height: 1;
-                h2{
-                    margin-top: 1rem;
-                    font-size: 1.5rem;
-                }
-                li{
-                    font-size: 1.2rem;
-                }
-            }
-        }
+    ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      h2{
+        margin: 0 0 6px;
+        font-size: 1.5rem;
+        line-height: 1.2;
+      }
+      li{
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
     }
-    .bottom-text{
-        .my-text{
-            display: inline-block;
-        h1{
-            font-size: 3rem;
-            margin: 1.5rem;
-            margin-left: 10rem;
-            
-        }
-        .sub-text{
-            font-size: 2rem;
-            margin-left: 15rem;
-            font-weight: bold;
-        }
+  }
+
+  .bottom-text{
+    .my-text{
+      display: inline-block;
+
+      h1{
+        font-size: 3rem;
+        margin: 1.5rem;
+        margin-left: 10rem;
+      }
+      .sub-text{
+        font-size: 2rem;
+        margin-left: 15rem;
+        font-weight: bold;
+      }
     }
-        .git{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            margin-top: 2rem;
-            margin-left: 35rem;
-            h3{
-                font-size: 3rem;
-                margin-left: 10rem;
-            }
-            li{
-                font-size: 1.8rem;
-                margin-left: 2rem;
-                padding-top: 0.5rem;
-            }
-        }
+    .git{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      margin-top: 2rem;
+      margin-left: 25rem;
+
+      h3{ font-size: 3rem; margin-left: 10rem; }
+      li{ font-size: 1.8rem; margin-left: 2rem; padding-top: .5rem; }
     }
+  }
 }

@@ -18,6 +18,10 @@
     .text-list {
         padding-top: 5rem;
       .about-row {
+        list-style: none;
+        margin: 5rem 0;
+        margin-left: 2rem;
+        padding:  0 2rem;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -86,6 +90,7 @@
         img {
           width: 80px; height: 80px;
           margin: 2rem;
+          object-fit:contain; 
         }
   
       }
