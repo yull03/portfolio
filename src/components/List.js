@@ -264,8 +264,7 @@ const List = () => {
             </div>
 
             <div className="image-list">
-                <button onClick={prev}>↑</button>
-                <p>Prev</p>
+                <button onClick={prev}>↑<p onClick={prev}>Prev</p></button>
                 <div className="image-hidden">
                     <div className="image-track" ref={trackRef}>
                         {/* 마지막 클론 */}
@@ -306,8 +305,7 @@ const List = () => {
                         </a>
                     </div>
                 </div>
-                <p>Next</p>
-                <button onClick={next}>↓</button>
+                <button onClick={next}><p onClick={next}>Next</p>↓</button>
             </div>
         </section>
     );
