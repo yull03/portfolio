@@ -26,7 +26,8 @@ const About = () => {
     { src: `${process.env.PUBLIC_URL}/images/figma.png`, alt: "피그마" },
     { src: `${process.env.PUBLIC_URL}/images/git.png`, alt: "깃허브" },
     { src: `${process.env.PUBLIC_URL}/images/react.png`, alt: "리액트" },
-    { src: `${process.env.PUBLIC_URL}/images/scss.png`, alt: "scss" }
+    { src: `${process.env.PUBLIC_URL}/images/scss.png`, alt: "scss" },
+    { src: `${process.env.PUBLIC_URL}/images/supa.png`, alt: "supabase" }
   ];
 
   const root = useRef(null);

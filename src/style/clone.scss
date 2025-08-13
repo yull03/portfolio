@@ -1,93 +1,176 @@
-
-
 .clone-title {
-    margin: 5rem 0;
-    font-size: 10rem;
-    display: inline-block;
-    overflow: visible;
+  margin: 5rem 0;
+  font-size: 10rem;
+  display: inline-block;
+  overflow: visible;
 }
+
 .reveal-text {
-    display: inline-block;                 /* clip-path가 먹도록 */
-    will-change: clip-path, transform, opacity;
-    -webkit-clip-path: inset(0 100% 0 0);  /* 왼쪽에서 오른쪽으로 열리게 */
-            clip-path: inset(0 100% 0 0);
-    transform: translateX(-8px);
-    opacity: 0;
+  display: inline-block;
+  will-change: clip-path, transform, opacity;
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+  transform: translateX(-8px);
+  opacity: 0;
 }
 
 .clone-contents {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #222;
+  padding-bottom: 2rem;
+
+  .clone-card {
+    text-align: center;
     display: flex;
+    justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #222;
-    padding-bottom: 2rem;
-    .clone-card {
+    flex-direction: column;
+
+    h2 {
+      font-size: 5rem;
+      padding-top: 2rem;
+      color: #666;
+    }
+
+    /* === 이미지 구조 === */
+    .img-link {
+      display: block;
+
+      .img-wrap {
+        display: inline-block;
+        margin: 0 2rem;   /* 좌우 여백 */
+        padding: 1rem;    /* 이미지 주변 여백 */
+      }
+
+      .img-frame {
         position: relative;
-        overflow: hidden;
-        text-align: center;
+        border-radius: 3rem;
+        overflow: hidden; /* 이미지 모서리 안으로만 오버레이 */
+      }
+
+      img {
+        display: block;
+        width: 450px;
+        height: auto;
+        border-radius: 3rem;
+        transform: translateZ(0);
+        transition: transform 0.35s cubic-bezier(.2, .8, .2, 1),
+                    filter 0.35s ease;
+        will-change: transform;
+      }
+
+      /* 어두워지는 레이어 */
+      .overlay {
+        position: absolute;
+        inset: 0; /* 이미지 프레임과 동일 영역 */
+        background-color: rgba(0, 0, 0, 0);   /* ← 통일 */
         display: flex;
-        justify-content: center;
         align-items: center;
-        flex-direction: column;
-        border-radius: 12px;
-        a {
-            display: block;
+        justify-content: center;
+        transition: background-color 0.35s ease; /* ← 통일 */
+        pointer-events: none;
+        z-index: 1; /* img 위로 */
+        
+        /* 중앙 텍스트 */
+        .link-label {
+          color: #fff;
+          font-weight: 700;
+          font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+          letter-spacing: 0.02em;
+          opacity: 0;
+          transform: scale(0.95);
+          transition: opacity 0.35s ease, transform 0.35s ease;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+          white-space: nowrap;
+          user-select: none;
         }
-        h2 {
-            font-size: 5rem;
-            padding-top: 2rem;
-            color: #666;
-        }
-        img {
-            padding: 1rem;
-            display: block;
-            width: 450px;
-            height: auto;
-            border-radius: 3rem;
-            margin: 0 2rem;
-            transform: translateZ(0);
-            transition: transform .35s cubic-bezier(.2,.8,.2,1);
-            will-change: transform;
-        }
-&:hover img,
-  & > a:focus-visible img {
-    transform: translateZ(0) scale(1.06);  /* 필요하면 1.08로 */
+      }
+
+      /* hover/focus 시 변화 */
+      &:hover .img-frame img,
+      &:focus-visible .img-frame img {
+        transform: scale(1.03);
+        filter: brightness(0.85);
+      }
+
+      &:hover .img-frame .overlay,
+      &:focus-visible .img-frame .overlay {
+        background-color: rgba(0, 0, 0, 0.45); /* ← background → background-color */
+      }
+
+      &:hover .img-frame .overlay .link-label,
+      &:focus-visible .img-frame .overlay .link-label {
+        opacity: 1;
+        transform: scale(1.02);
+      }
+    }
   }
-    }
-    .clone-text-box{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align:left;
-        gap: 2rem;
-        line-height: 2;
-        margin-left: 5rem;
-        .clone-text{
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            font-size: 3rem;
-            gap: 2rem;
-            .one-text{
-                padding: 3rem 0;
-            }
-            .mark{
-                font-size: 2rem;
-            }
-            li{
-                p{
-                    line-height: 1.3;
-                    .text-small{
-                        margin-left: 2rem;
-                    }
-                }
-                .text-small{
-                    font-size: 2rem;
-                    a{
-                        font-size: 1.8rem;
-                    }
-                }
-            }
+
+  /* 텍스트 영역 */
+  .clone-text-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    gap: 2rem;
+    line-height: 2;
+    margin-left: 5rem;
+
+    .clone-text {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      font-size: 3rem;
+      gap: 2rem;
+
+      .one-text { padding: 3rem 0; }
+      .mark { font-size: 2rem; }
+
+      li {
+        p {
+          line-height: 1.3;
+          .text-small { margin-left: 2rem; }
         }
+        .text-small {
+          font-size: 2rem;
+          
+
+a {
+  position: relative; /* ::after 기준 */
+  font-size: 1.8rem;
+  display: inline-block;
+  transition: transform 0.2s ease;
+  text-decoration: none; /* 기본 밑줄 제거 */
+  -webkit-text-stroke: 3px #fff; /* 외곽선 두께, 색상 */
+  paint-order: stroke fill; /* 외곽선 먼저 그리기 */
+
+  /* 밑줄 배경 효과 */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    margin: 0 2rem;
+    bottom: 0.2em; /* 글자 아래 간격 */
+    width: 0%;
+    height: 30%; /* 글자 하단 30%만 */
+    background-color: rgb(106, 181, 255);
+    transition: width 0.3s ease;
+    z-index: -1; /* 글자 뒤 */
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.03);
+
+    &::after {
+      width: 100%; /* 좌→우 채워짐 */
     }
+  }
+}
+        }
+      }
+    }
+  }
 }
